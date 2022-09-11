@@ -1,0 +1,41 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "calculator",
+  "main": "src/script/script.js",
+  "scripts": {
+    "build:scss": "sass --no-source-map src/scss:public/css",
+    "copy:html": "copyfiles -u 1 ./src/*.html public",
+    "copy:js": "copyfiles -u 1 ./src/script/*.js public",
+    "copy": "npm-run-all --parallel copy:*",
+    "watch:js": "onchange \"src/script/*.js\" -- npm run copy:js ",
+    "watch:html": "onchange \"src/*.html\" -- npm run copy:html",
+    "watch:scss": "sass --watch src/scss:public/css",
+    "watch": "npm-run-all --parallel watch:*",
+    "serve": "browser-sync start --server public --files public",
+    "start": "npm-run-all copy --parallel watch serve",
+    "build": "npm-run-all copy:html build:*",
+    "postbuild": "postcss public/css/*.css -u autoprefixer cssnano -r --no-map"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/golu7679/calculator-with-neumorphic-design.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/golu7679/calculator-with-neumorphic-design/issues"
+  },
+  "homepage": "https://github.com/golu7679/calculator-with-neumorphic-design#readme",
+  "dependencies": {
+    "autoprefixer": "^10.4.8",
+    "browser-sync": "^2.27.10",
+    "copyfiles": "^2.4.1",
+    "cssnano": "^5.1.13",
+    "npm-run-all": "^4.1.5",
+    "onchange": "^7.1.0",
+    "postcss-cli": "^10.0.0",
+    "sass": "^1.54.9"
+  }
+}
